@@ -1,5 +1,29 @@
 ---
+import "../styles/global.css";
+const pageTitle = "About Me";
 
+const identify = {
+  firstName: "Hemraj",
+  country: "India",
+  occupation: "Developer",
+  hobbies: ["Anime", "Coding", "Calisthenics"],
+};
+const skills = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "MERN Stack",
+  "Next JS",
+  "ASTRO JS",
+];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "crimson";
+const fontWeight = 500;
+const textCase = "uppercase";
 ---
 
 <html lang="en">
@@ -8,18 +32,49 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>{pageTitle}</title>
+    <style define:vars={{ skillColor, fontWeight, textCase }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+      .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+    </style>
   </head>
   <body>
     <a href="/">home</a>
     <a href="/about">About</a>
     <a href="/blog">Blog</a>
 
-    <h1>About Me</h1>
+    <h1>{pageTitle}</h1>
+    <ul>
+      <li>My name is {identify.firstName}.</li>
+      <li>I live in {identify.country} as a {identify.occupation}.</li>
+      <li>
+        Two of my hobbies are:{identify.hobbies[0]} and {identify.hobbies[1]}
+      </li>
+    </ul>
+    <p>My skills are:</p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
     <p>
       This is me creating the astro site and this is the first page that i
       created myself
     </p>
     <p>If you're reading this make sure to comeback and check my journey.</p>
+    {happy && <p>I am happy to be learning Astro!</p>}
+    {finished && <p>I finished the tutorial</p>}
+    {
+      goal === 3 ? (
+        <p>I will complete tutorial in three days.</p>
+      ) : (
+        <p>My goal is not three days.</p>
+      )
+    }
   </body>
 </html>
