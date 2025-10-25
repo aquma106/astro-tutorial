@@ -1,15 +1,16 @@
 ---
+import BaseLayouts from "./BaseLayouts.astro";
+
 const { frontmatter } = Astro.props;
 ---
 
-<meta charset="utf-8" />
-<h1>{frontmatter.title}</h1>
-<p>{frontmatter.pubDate}</p>
-<p><em>{frontmatter.description}</em></p>
-<img src={frontmatter.image.url} alt={frontmatter.image.alt} />
-<slot />
-<p>Written by {frontmatter.author}</p>
-
+<BaseLayouts pageTitle={frontmatter.title}>
+  <p>{frontmatter.pubDate}</p>
+  <p><em>{frontmatter.description}</em></p>
+  <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
+  <slot />
+  <p>Written by {frontmatter.author}</p>
+</BaseLayouts>
 <style>
   img {
     width: 200px;
